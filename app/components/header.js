@@ -9,6 +9,7 @@ const Header = () => {
                     <Image src="/header.svg" width={1330} height={148} alt="header-image" priority/>
                 </Link>
             </div>
+            <p>Next.js/Reactで作成されています。ソースをGitHubに公開しているので、登録の際は架空のメールアドレス、パスワードにして下さい。</p>
             <nav>
                 <ul>
                     <li><Link href="/user/register">登録</Link></li>
