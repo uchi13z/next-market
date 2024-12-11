@@ -9,7 +9,8 @@ const getSingleItem = async(id) => {
 }  
 
 const ReadSingleItem = async(context) => {
-    const singleItem = await getSingleItem(context.params.id)
+    const params = await context.params
+    const singleItem = await getSingleItem(params.id)
     return (
         <div className="grid-container-si">
             <div>
@@ -21,8 +22,8 @@ const ReadSingleItem = async(context) => {
                 <hr/>
                 <p>{singleItem.description}</p>
                 <div>
-                    <Link href={`/item/update/${singleItem._id}`}>アイテム編集</Link>
-                    <Link href={`/item/delete/${singleItem._id}`}>アイテム削除</Link>
+                    <Link href={`../../item/update/${singleItem._id}`}>アイテム編集</Link>
+                    <Link href={`../../item/delete/${singleItem._id}`}>アイテム削除</Link>
                 </div>
             </div>
         </div>

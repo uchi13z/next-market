@@ -33,7 +33,7 @@ const CreateItem = () => {
             })
             const jsonData = await response.json()
             alert(jsonData.message)  
-            router.push("/") 
+            router.push("/next-market") 
             router.refresh()
         }catch{
             alert("アイテム作成失敗") 

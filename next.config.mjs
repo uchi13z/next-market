@@ -1,12 +1,16 @@
-/** @type {import('next').NextConfig} */
 const nextConfig = {
-    images: {
-        remotePatterns: [
-            {
-                hostname: "res.cloudinary.com"
-            }
-        ]
-    }
+  assetPrefix: "/next-market",
+  //basePath: "/next-market",
+  //reactStrictMode: true,
+
+  images: {
+    unoptimized: true,
+    remotePatterns: [
+      {
+        hostname: "res.cloudinary.com",
+      },
+    ],
+  },
 };
 
 export default nextConfig;
