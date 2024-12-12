@@ -1,0 +1,5 @@
+DirectoryIndex disabled
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule (.*) http://localhost:3000/$1 [P,L,QSA]
+</IfModule>

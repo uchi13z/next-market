@@ -1,18 +1,23 @@
 import { useState, useEffect } from "react" 
-import { useRouter } from "next/navigation"
-import { jwtVerify } from "jose" 
+import { useRouter, usePathname } from "next/navigation"
+import { jwtVerify } from "jose"
 
 const useAuth = () => {
     const [loginUserEmail, setLoginUserEmail] = useState("")
 
     const router = useRouter() 
+    const pathname = usePathname() 
 
     useEffect(() => {   
         const checkToken = async() => { 
             const token = localStorage.getItem("token")
 
             if(!token){
-                router.push("/user/login")
+                if (pathname.includes("/create")) {
+                    router.push("../../user/login")
+                } else {
+                    router.push("../../user/login")
+                }
             }
 
             try{
@@ -20,7 +25,11 @@ const useAuth = () => {
                 const decodedJwt = await jwtVerify(token, secretKey) 
                 setLoginUserEmail(decodedJwt.payload.email)  
             }catch{
-                router.push("/user/login")
+                if (pathname.includes("/create")) {
+                    router.push("../user/login")
+                } else {
+                    router.push("../../user/login")
+                }
             }
         }
         checkToken() 

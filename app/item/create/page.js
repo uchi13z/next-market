@@ -16,7 +16,7 @@ const CreateItem = () => {
     const handleSubmit = async(e) => {
         e.preventDefault() 
         try{
-            const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/item/create`, {
+            const response = await fetch(`/next-market/api/item/create`, {
                 method: "POST",
                 headers: { 
                     "Accept": "application/json", 
@@ -33,7 +33,7 @@ const CreateItem = () => {
             })
             const jsonData = await response.json()
             alert(jsonData.message)  
-            router.push("/") 
+            router.push("/next-market") 
             router.refresh()
         }catch{
             alert("アイテム作成失敗") 

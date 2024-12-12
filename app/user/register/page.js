@@ -9,7 +9,7 @@ const Register = () => {
     const handleSubmit = async(e) => {
         e.preventDefault()  
         try{
-            const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/user/register`, {
+            const response = await fetch(`/next-market/api/user/register`, {
                 method: "POST",
                 headers: { 
                     "Accept": "application/json", 
