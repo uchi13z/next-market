@@ -3,3 +3,14 @@ DirectoryIndex disabled
   RewriteEngine On
   RewriteRule (.*) http://localhost:3000/$1 [P,L,QSA]
 </IfModule>
+
+# (mod_rewriteÇ»Ç«ÇÕìKãXê›íË)
+<Location /_next/webpack-hmr>
+    RewriteEngine On
+    RewriteCond %{QUERY_STRING} transport=websocket [NC]
+    RewriteCond %{HTTP:Upgrade} websocket [NC]
+    RewriteCond %{HTTP:Connection} upgrade [NC]
+    RewriteRule /(.*) ws://localhost:3000/_next/webpack-hmr/$1 [P,L]
+    ProxyPass ws://localhost:3000/_next/webpack-hmr retry=0 timeout=30
+    ProxyPassReverse ws://localhost:3000/_next/webpack-hmr
+</Location>

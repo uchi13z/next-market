@@ -1,8 +1,10 @@
-import "./layout.css"
+import "./globals.css"
 import Header from "./components/header"
 import Footer from "./components/footer"
 
-const RootLayout = ({ children }) => {
+export const appName = "next-market"
+
+const Layout = ({ children }) => {
     return (
         <html lang="en">
             <body>
@@ -14,4 +16,4 @@ const RootLayout = ({ children }) => {
     )
 }
 
-export default RootLayout
+export default Layout

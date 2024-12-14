@@ -1,42 +1,14 @@
-"use client"
-import { useState } from "react"
+import { lazy, Suspense } from "react"
 
-const Login = () => {
-    const [email, setEmail] = useState("") 
-    const [password, setPassword] = useState("")
+const Page = () => {
+    const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
+    const Login = lazy(() => sleep(2000).then(() => import('./login')))
 
-    const handleSubmit = async(e) => {
-        e.preventDefault()
-        try{
-            const response = await fetch(`/next-market/api/user/login`, {
-                method: "POST",
-                headers: { 
-                    "Accept": "application/json", 
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    email: email,
-                    password: password
-                })
-            })
-            const jsonData = await response.json() 
-            localStorage.setItem("token", jsonData.token) 
-            alert(jsonData.message) 
-        }catch{
-            alert("ログイン失敗")
-        }
-    }
-    
     return (
-        <div>
-            <h1 className="page-title">ログイン</h1>
-            <form onSubmit={handleSubmit}>
-                <input value={email} onChange={(e) => setEmail(e.target.value)} type="text" name="email" placeholder="メールアドレス" required/>
-                <input value={password} onChange={(e) => setPassword(e.target.value)} type="text" name="password" placeholder="パスワード" required/>
-                <button>ログイン</button>
-            </form>
-        </div>
+        <Suspense fallback={<h1>Loading...</h1>}>
+            <Login />
+        </Suspense>
     )
 }
 
-export default Login
+export default Page
